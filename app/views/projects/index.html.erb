@@ -13,7 +13,7 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.name, edit_project_path(project) %></td>
+        <td><%= link_to project.name, project_path(project) %></td>
         <td><%= to_br_date(project.created_at) %></td>
 
         <td>
@@ -22,6 +22,10 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => 'Você tem certeza que deseja deletar este projeto?') },
                       :class => 'btn btn-danger' %>
+          <%= link_to t('.edit', :default => "Editar"),
+                      edit_project_path(project),
+                      :method => :get,
+                      :class => 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>

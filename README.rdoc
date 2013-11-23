@@ -1,28 +1,20 @@
-== README
+== Team metrics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Team metrics é um aplicativo de gestão de times de desenvolvimento ágil.
 
-Things you may want to cover:
+A idéia é dar informações a gestores de times ágeis que possibilitem:
 
-* Ruby version
+* Tracking de produtividade do time
+* Tracking de produtividade de cada membro do time
+* Avaliar a assertividade da pontuação de histórias
+* Relatórios, muitos relatórios
 
-* System dependencies
+Funcionalidades planejadas:
 
-* Configuration
+* Gestão de projetos de desenvolvimento
+* Gestão de backlogs
+* Gestão de sprints
+* Gestão de sprint review
+* Gestão de feedback para o time
+* Gestão de feedback para cada membro do time
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

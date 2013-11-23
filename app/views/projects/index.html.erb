@@ -1,0 +1,33 @@
+<%- model_class = Project -%>
+<div class="page-header">
+  <h1>Projetos</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome do projeto</th>
+      <th>Data de criação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, edit_project_path(project) %></td>
+        <td><%= to_br_date(project.created_at) %></td>
+
+        <td>
+          <%= link_to t('.destroy', :default => "Deletar"),
+                      project_path(project),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => 'Você tem certeza que deseja deletar este projeto?') },
+                      :class => 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => "Criar novo projeto"),
+            new_project_path,
+            :class => 'btn btn-primary' %>

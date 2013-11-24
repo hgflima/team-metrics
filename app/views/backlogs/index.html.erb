@@ -1,0 +1,26 @@
+<%- model_class = Backlog -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Backlog</th>
+      <th>Data de criação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @backlogs.each do |backlog| %>
+      <tr>
+        <td><%= backlog.title %></td>
+        <td><%= to_br_date(backlog.created_at) %></td>
+        <td>
+          <%= link_to_modal "Editar", edit_project_backlog_path(backlog.project_id, backlog.id), :class => "btn btn-primary" %>
+          <%= link_to t('.destroy', :default => "Deletar"),
+                      project_backlog_path(backlog.project.id, backlog.id),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => 'Você tem certeza que deseja deletar este backlog?') },
+                      :class => 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,5 +1,5 @@
 <%- model_class = Backlog -%>
-<table class="table table-striped">
+<table id="backlogs" class="table table-striped">
   <thead>
     <tr>
       <th>Backlog</th>
@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <% @backlogs.each do |backlog| %>
-      <tr>
+      <tr id="<%= backlog.id %>">
         <td><%= backlog.title %></td>
         <td><%= to_br_date(backlog.created_at) %></td>
         <td>

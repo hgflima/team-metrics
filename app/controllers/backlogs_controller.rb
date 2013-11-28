@@ -4,7 +4,7 @@ class BacklogsController < ApplicationController
   # GET /backlogs
   # GET /backlogs.json
   def index
-    @backlogs = Backlog.all
+    @backlogs = Backlog.all.order
   end
 
   # GET /backlogs/1
@@ -27,7 +27,12 @@ class BacklogsController < ApplicationController
   # POST /backlogs
   # POST /backlogs.json
   def create
+
     @backlog = Backlog.new(backlog_params)
+   
+    # adiciona o backlog no final da lista
+    p = Project.find params[:project_id]
+    @backlog.position = (p.get_last_backlog_position + 1)
 
     respond_to do |format|
       if @backlog.save
@@ -63,6 +68,21 @@ class BacklogsController < ApplicationController
       format.html { redirect_to project, :notice => "Backlog deletado com sucesso" }
       format.json { head :no_content }
     end
+  end
+  
+  def sort
+    
+    ids = params[:backlogs]
+    position = 0
+
+    ids.each do |id|
+      b = Backlog.find id
+      b.update_attribute(:position, position)
+      position = position + 1
+    end
+
+    render :nothing => true, :status => 200
+
   end
 
   private

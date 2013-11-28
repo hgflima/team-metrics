@@ -38,3 +38,21 @@
 <div id="create-backlog" style="display: none;">
   <%= render template: 'backlogs/new' %>
 </div>
+
+<%= javascript_tag do %>
+
+  $(document).ready(function() {
+    $("#backlogs").tableDnD({
+      onDrop: function(table, row) {
+        $.ajax({
+          type: "POST",
+          url: "<%= sort_backlogs_project_path @project %>",
+          processData: false,
+          data: $.tableDnD.serialize(),
+          success: function(msg) {
+          }
+        });
+      }
+    });
+  });
+  <% end %>

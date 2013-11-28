@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131123183728) do
+ActiveRecord::Schema.define(version: 20131125220515) do
 
   create_table "backlogs", force: true do |t|
     t.string   "title",       limit: 64
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131123183728) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",               default: 0
   end
 
   add_index "backlogs", ["project_id"], name: "index_backlogs_on_project_id", using: :btree

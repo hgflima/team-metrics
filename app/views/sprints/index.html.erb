@@ -1,0 +1,33 @@
+<%- model_class = Sprint -%>
+
+<div class="page-header">
+  <h1><%= @project.name %></h1>
+</div>
+
+<%= render :partial => 'projects/navigation' %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sprint</th>
+      <th>Data de criação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sprints.each do |sprint| %>
+      <tr>
+        <td><%= sprint.title %></td>
+        <td><%= to_br_date(sprint.created_at) %></td>
+        <td>
+          <%= link_to_modal "Editar", edit_project_sprint_path(sprint.project_id, sprint.id), :class => "btn btn-primary" %>
+          <%= link_to t('.destroy', :default => "Deletar"),
+                      project_sprint_path(sprint.project.id, sprint.id),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => 'Você tem certeza que deseja deletar este sprint?') },
+                      :class => 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

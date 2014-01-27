@@ -13,7 +13,7 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.name, project_path(project) %></td>
+        <td><%= link_to project.name, project_backlogs_path(project) %></td>
         <td><%= to_br_date(project.created_at) %></td>
 
         <td>

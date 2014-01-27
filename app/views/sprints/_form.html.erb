@@ -1,0 +1,18 @@
+<%= form_for [@project, @sprint] do |f| %>
+  <div class="control-group">
+    <%= f.label "Nome", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>  
+  </div>
+  <div class="control-group">
+    <%= f.label "Descricao", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.hidden_field :project_id %>
+    <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

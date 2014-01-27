@@ -4,7 +4,8 @@ class BacklogsController < ApplicationController
   # GET /backlogs
   # GET /backlogs.json
   def index
-    @backlogs = Backlog.all.order
+    @project = Project.find params[:project_id].to_i
+    @backlogs = @project.backlogs
   end
 
   # GET /backlogs/1
@@ -36,7 +37,7 @@ class BacklogsController < ApplicationController
 
     respond_to do |format|
       if @backlog.save
-        format.html { redirect_to @backlog.project, notice: 'Backlog criado com sucesso.' }
+        format.html { redirect_to project_backlogs_path(@backlog.project.id), notice: 'Backlog criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @backlog }
       else
         format.html { render action: 'new' }
@@ -50,7 +51,7 @@ class BacklogsController < ApplicationController
   def update
     respond_to do |format|
       if @backlog.update(backlog_params)
-        format.html { redirect_to @backlog.project, notice: 'Backlog atualizado com sucesso.' }
+        format.html { redirect_to project_backlogs_path(@backlog.project.id), notice: 'Backlog atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,22 +66,14 @@ class BacklogsController < ApplicationController
     project = @backlog.project
     @backlog.destroy
     respond_to do |format|
-      format.html { redirect_to project, :notice => "Backlog deletado com sucesso" }
+      format.html { redirect_to project_backlogs_path(project.id), :notice => "Backlog deletado com sucesso" }
       format.json { head :no_content }
     end
   end
   
   def sort
     
-    ids = params[:backlogs]
-    position = 0
-
-    ids.each do |id|
-      b = Backlog.find id
-      b.update_attribute(:position, position)
-      position = position + 1
-    end
-
+    Backlog.sort(params[:backlogs])
     render :nothing => true, :status => 200
 
   end

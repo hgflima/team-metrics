@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @backlogs = @project.backlogs
+    @sprints = @project.sprints
   end
 
   # GET /projects/new

@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+  <li class="<%= 'active' if current_page?(project_backlogs_path) %>"><%= link_to "Backlogs", project_backlogs_path(@project) %></li>
+  <li class="<%= 'active' if current_page?(project_sprints_path) %>"><%= link_to "Sprints", project_sprints_path(@project) %></li>
+  <li><a href="#tab_members" data-toggle="tab">Membros do time</a></li>
+</ul>

@@ -4,12 +4,8 @@
 </div>
 
 <div class="tabbable">
-
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab_backlog" data-toggle="tab">Backlogs</a></li>
-    <li><a href="#tab_sprints" data-toggle="tab">Sprints</a></li>
-    <li><a href="#tab_members" data-toggle="tab">Membros do time</a></li>
-  </ul>
+  
+  <%= render :partial => "projects/navigation" %>
 
   <!-- tabs -->
   <div class="tab-content">
@@ -22,7 +18,8 @@
     
     <!-- sprints -->
     <div class="tab-pane" id="tab_sprints">
-      <p>Sprints</p>
+      <%= render template: 'sprints/index' %>
+      <%= link_to_modal "Adicionar sprint", new_project_sprint_path(@project.id), :class => "btn btn-primary"%>
     </div>
 
     <!-- members -->
@@ -55,4 +52,5 @@
       }
     });
   });
-  <% end %>
+
+<% end %>

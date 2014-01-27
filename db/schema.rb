@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125220515) do
+ActiveRecord::Schema.define(version: 20131220031104) do
 
   create_table "backlogs", force: true do |t|
     t.string   "title",       limit: 64
@@ -30,5 +30,15 @@ ActiveRecord::Schema.define(version: 20131125220515) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sprints", force: true do |t|
+    t.string   "title",       limit: 64
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree
 
 end

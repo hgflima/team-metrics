@@ -1,4 +1,12 @@
 <%- model_class = Backlog -%>
+<% @active = 'backlogs' %>
+
+<div class="page-header">
+  <h1><%= @project.name %></h1>
+</div>
+
+<%= render :partial => 'projects/navigation' %>
+
 <table id="backlogs" class="table table-striped">
   <thead>
     <tr>
@@ -24,3 +32,24 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to_modal "Adicionar backlog", new_project_backlog_path(@project.id), :class => "btn btn-primary"%>
+
+<%= javascript_tag do %>
+
+  $(document).ready(function() {
+    $("#backlogs").tableDnD({
+      onDrop: function(table, row) {
+        $.ajax({
+          type: "POST",
+          url: "<%= sort_backlogs_project_path @project %>",
+          processData: false,
+          data: $.tableDnD.serialize(),
+          success: function(msg) {
+          }
+        });
+      }
+    });
+  });
+
+<% end %>

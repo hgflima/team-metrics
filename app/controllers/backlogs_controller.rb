@@ -1,32 +1,32 @@
 class BacklogsController < ApplicationController
   before_action :set_backlog, only: [:show, :edit, :update, :destroy]
 
-  # GET /backlogs
-  # GET /backlogs.json
+  # GET /project/:project_id/backlogs
+  # GET /project/:project_id/backlogs.json
   def index
     @project = Project.find params[:project_id].to_i
     @backlogs = @project.backlogs
   end
 
-  # GET /backlogs/1
-  # GET /backlogs/1.json
+  # GET /project/:project_id/backlogs/1
+  # GET /project/:project_id/backlogs/1.json
   def show
   end
 
-  # GET /backlogs/new
+  # GET /project/:project_id/backlogs/new
   def new
     @project = Project.find params[:project_id].to_i
     @backlog = @project.backlogs.build
   end
 
-  # GET /backlogs/1/edit
+  # GET /project/:project_id/backlogs/1/edit
   def edit
     @project = Project.find params[:project_id].to_i
     @backlog = Backlog.find params[:id].to_i
   end
 
-  # POST /backlogs
-  # POST /backlogs.json
+  # POST /project/:project_id/backlogs
+  # POST /project/:project_id/backlogs.json
   def create
 
     @backlog = Backlog.new(backlog_params)
@@ -46,8 +46,8 @@ class BacklogsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /backlogs/1
-  # PATCH/PUT /backlogs/1.json
+  # PATCH/PUT /project/:project_id/backlogs/1
+  # PATCH/PUT /project/:project_id/backlogs/1.json
   def update
     respond_to do |format|
       if @backlog.update(backlog_params)
@@ -60,8 +60,8 @@ class BacklogsController < ApplicationController
     end
   end
 
-  # DELETE /backlogs/1
-  # DELETE /backlogs/1.json
+  # DELETE /project/:project_id/backlogs/1
+  # DELETE /project/:project_id/backlogs/1.json
   def destroy
     project = @backlog.project
     @backlog.destroy
@@ -70,7 +70,8 @@ class BacklogsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+ 
+  # POST /project/:project_id/backlog/sort
   def sort
     
     Backlog.sort(params[:backlogs])
